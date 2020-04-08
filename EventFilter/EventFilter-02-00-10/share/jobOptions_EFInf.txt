@@ -1,7 +1,0 @@
-
-ApplicationMgr.DLLs += {"EventFilter"};
-ApplicationMgr.TopAlg += { "EventFilter" };
-EventFilter.useTrigger = false;
-EventFilter.OutputLevel = 5;
-EventFilter.OpenedChannels = {"EBhabha","BBhabha","Dimuon","Diphoton","Hadron","Error",
-			   "Other","RandomTrg"};

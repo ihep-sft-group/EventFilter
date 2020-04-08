@@ -1,4 +1,0 @@
-package efhlt
-
-include_dirs "$(EFHLTROOT)"
-

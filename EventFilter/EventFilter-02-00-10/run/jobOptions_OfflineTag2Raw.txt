@@ -1,7 +1,0 @@
-#include "jobOptions_OfflineTag.txt"
-
-#include "$EVENTFILTERROOT/share/WriteRawDatajobOptions.txt"
-PackedRawDataCnvSvc.Status = 0;
-Builder.Status = 0;
-
-RawDataOutputSvc.OutputFile  = "test.raw";
