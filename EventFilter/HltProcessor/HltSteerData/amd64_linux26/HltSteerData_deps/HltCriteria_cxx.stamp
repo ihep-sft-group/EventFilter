@@ -1,0 +1,1 @@
+HltCriteria_cxx_dependencies =  ../src/HltCriteria.cxx  $(bin)HltSteerData_deps/HltCriteria_cxx.stamp

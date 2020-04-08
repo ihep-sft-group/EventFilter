@@ -1,0 +1,11 @@
+package HltTools
+
+use BesPolicy         BesPolicy-*
+use GaudiInterface    GaudiInterface-*         External
+
+include_dirs "$(HLTTOOLSROOT)"
+library HltTools   *.cxx
+
+apply_pattern installed_library
+
+application TPathResolver -s=../test TPathResolver.cxx

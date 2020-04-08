@@ -1,0 +1,60 @@
+#include "$RAWDATACNVROOT/share/ReadRawDatajobOptions.txt"
+#include "$OFFLINEEVENTLOOPMGRROOT/share/OfflineEventLoopMgr_Option.txt"
+//#include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
+#include "$CALIBSVCROOT/share/job-CalibData.txt"
+#include "$MAGNETICFIELDROOT/share/MagneticField.txt"
+//#include "$EVENTFILTERROOT/share/jobOptions_EventFilter.txt"
+ApplicationMgr.DLLs += {"HltMakerAlg"};
+ApplicationMgr.TopAlg += { "HltEventMaker" };
+#include "$EVENTFILTERROOT/share/jobOptions_EFInf.txt"
+ApplicationMgr.DLLs += {"EFTest"};
+ApplicationMgr.TopAlg += { "EFTest" };
+//DatabaseSvc.Host="bes3db.ihep.ac.cn";
+MagneticFieldSvc.UseDBFlag = false;
+
+EventFilter.OpenedChannels ={"GEBhabha","GBBhabha"};
+
+RawDataInputSvc.InputFiles={"/bes3fs/offline/data/raw/round03/100624/run_0014574_All_file007_SFO-1.raw"};
+RawDataInputSvc.RunMode = 2;
+
+RawDataProviderSvc.OnlineMode = true;
+RawDataProviderSvc.OutputLevel = 5;			      
+
+RootWriter.AcceptAlgs += { "EventFilter" };
+RdtWriter.AcceptAlgs = { "EventFilter" };
+ 
+#include "$ROOTIOROOT/share/jobOptions_Digi2Root.txt"
+RootWriter.ItemList = { "/Event/EventHeader#1",
+                        "/Event/Digi/MdcDigiCol#1",
+                        "/Event/Digi/TofDigiCol#1",
+                        "/Event/Digi/EmcDigiCol#1",
+                        "/Event/Digi/MucDigiCol#1",
+                        //"/Event/Trig/TrigData#1",
+                        "/Event/Hlt/HltRawCol#1"
+                      };
+RootCnvSvc.digiRootOutputFile = "test.rtraw";
+ 
+//#include "$EVENTFILTERROOT/share/WriteRawDatajobOptions.txt"
+PackedRawDataCnvSvc.Status = 0;
+Builder.Status = 0;
+RawDataOutputSvc.OutputFile  = "test.raw";
+	
+HltConfigSvc.FromDB = false;
+
+EFAlgorithm.BeamEnergy = 1.843;
+	      
+//Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )
+MessageSvc.OutputLevel = 5;
+MessageSvc.useColors = true;
+EFAlgorithm.OutputLevel= 555555;
+EventFilter.OutputLevel= 5;
+EFTest.OutputLevel= 5;
+ApplicationMgr.EvtMax = -1;
+			 
+// Histogram and Ntuple
+ApplicationMgr.DLLs += { "RootHistCnv" };
+ApplicationMgr.DLLs += { "NTuples" };
+ 
+ApplicationMgr.HistogramPersistency = "ROOT";
+ 
+NTupleSvc.Output = { "FILE1 DATAFILE='eftest.root' OPT='NEW' TYP='ROOT'" };

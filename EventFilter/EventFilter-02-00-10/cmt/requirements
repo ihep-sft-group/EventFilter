@@ -1,0 +1,27 @@
+package EventFilter
+
+use HltTools        HltTools-*        EventFilter/HltUtilities
+use HltDataTypes    HltDataTypes-*    EventFilter/HltUtilities
+use HltStore        HltStore-*        EventFilter/HltUtilities
+use HltAlgorithms   HltAlgorithms-*   EventFilter/HltUtilities
+use HltSteerData    HltSteerData-*    EventFilter/HltProcessor
+use HltConfig       HltConfig-*       EventFilter/HltProcessor
+use HltSteering     HltSteering-*     EventFilter/HltProcessor
+use HltEvent        HltEvent-*        Event
+use TrigEvent       TrigEvent-*       Event
+
+use TofRawEvent     TofRawEvent-*     Tof
+use MdcRawEvent     MdcRawEvent-*     Mdc
+use EmcRawEvent     EmcRawEvent-*     Emc
+use MucRawEvent     MucRawEvent-*     Muc
+# Online uses
+#use CSecAndLum      CSecAndLum-*      EventFilter/OnlineJointer 
+use efhlt           efhlt-*           EventFilter/OnlineJointer
+use EFServices      EFServices-*      EventFilter/OnlineJointer
+use ESController    ESController-*    EventFilter/OnlineJointer
+#use ESTest          ESTest-00-00-01          EventFilter/OnlineJointer
+
+include_dirs "$(EVENTFILTERROOT)"
+
+library  EventFilter EventFilter.cxx components/EventFilter_*.cxx
+library  EFTest      EFTest.cxx components/EFTest_*.cxx

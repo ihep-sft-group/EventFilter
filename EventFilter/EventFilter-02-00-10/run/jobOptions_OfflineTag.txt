@@ -1,0 +1,30 @@
+#include "$RAWDATACNVROOT/share/ReadRawDatajobOptions.txt"
+#include "$OFFLINEEVENTLOOPMGRROOT/share/OfflineEventLoopMgr_Option.txt"
+//#include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
+//#include "$CALIBSVCROOT/share/job-CalibData.txt"
+#include "$MAGNETICFIELDROOT/share/MagneticField.txt"
+//#include "$CALIBSVCROOT/share/calibConfig_rec_data.txt"
+#include "$EVENTFILTERROOT/share/jobOptions_EventFilter.txt"
+ApplicationMgr.DLLs += {"HltMakerAlg"};
+ApplicationMgr.TopAlg += { "HltEventMaker" };
+
+//DatabaseSvc.Host="bes3db.ihep.ac.cn";
+MagneticFieldSvc.UseDBFlag = false;
+HltConfigSvc.FromDB = false;
+
+RawDataInputSvc.InputFiles={"/bes3fs/offline/data/randomtrg/round02/run_0008093_RandomTrg_file001_SFO-1.raw"};
+RawDataInputSvc.RunMode = 2;
+
+RawDataProviderSvc.OnlineMode = true;
+RawDataProviderSvc.OutputLevel = 5;			      
+	
+EFAlgorithm.BeamEnergy = 1.843;
+	      
+//Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )
+MessageSvc.OutputLevel = 5;
+MessageSvc.useColors = true;
+EFAlgorithm.OutputLevel= 555555;
+EventFilter.OutputLevel= 5;
+EFTest.OutputLevel= 5;
+ApplicationMgr.EvtMax = -1;
+			 

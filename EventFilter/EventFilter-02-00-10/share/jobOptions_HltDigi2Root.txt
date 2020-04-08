@@ -1,0 +1,13 @@
+// JobOptions for adding EventFilter information into simulation/raw-data
+// to Digi root file
+#include "$EVENTFILTERROOT/share/jobOptions_EventFilter.txt"
+//EFAlgorithm.OutputLevel =3;
+//EFDetectorHits.SubOutputLevel =5;
+//EFtoTDS.OutputLevel     =2;
+
+#include "$ROOTIOROOT/share/jobOptions_Digi2Root.txt"
+
+RootWriter.ItemList = { "/Event/EventHeader#1",
+                        "/Event/MC/McParticleCol#1",
+                        "/Event/Digi#99",
+			"/Event/Hlt#99" };

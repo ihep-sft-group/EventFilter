@@ -1,0 +1,10 @@
+package HltUtilities
+
+use SniperKernel v*
+
+include_dirs "/junofs/users/liuyan/OEC/EventFilter/HltUtilities/HltDataTypes/include"
+library  HltDataTypes  *.cc
+
+apply_pattern install_python_modules
+apply_pattern install_more_includes more=HltDataTypes
+apply_pattern linker_library library=HltDataTypes

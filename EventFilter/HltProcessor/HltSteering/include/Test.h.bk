@@ -1,0 +1,17 @@
+#include "SniperKernel/AlgBase.h"
+#include <vector>
+#include <map>
+class Test: public AlgBase
+{
+    public:
+        Test(const std::string& name);
+        ~Test();
+        bool initialize();
+        bool execute();
+        bool finalize();
+    private:
+        int m_count;
+        std::string                 m_string;
+        std::vector<int>            m_vector_int;
+        std::map<std::string, int>  m_str_int;
+};

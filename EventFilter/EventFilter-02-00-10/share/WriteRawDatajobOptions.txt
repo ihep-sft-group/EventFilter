@@ -1,0 +1,28 @@
+ApplicationMgr.DLLs += {"RawDataCnv"};
+ApplicationMgr.ExtSvc += { "PackedRawDataCnvSvc"};
+
+//--------------------------------------------------------------
+// Algorithms Private Options
+//--------------------------------------------------------------
+Builder.RawDataCnvConfFile = "$RAWDATACNVROOT/share/RawDataCnvConf.conf";
+MucBuilder.Fec2IdMap = "$RAWDATACNVROOT/share/MucFec2Id.map";
+
+// OutputSvc 
+ApplicationMgr.ExtSvc += { "RawDataOutputSvc" };
+
+// Properties 
+PackedRawDataCnvSvc.RawDataOutputSvc ="RawDataOutputSvc";
+
+// OutputStream 
+ApplicationMgr.OutStream += {"RdtWriter"}; 
+RdtWriter.EvtConversionSvc="PackedRawDataCnvSvc"; 
+RdtWriter.Output = "SVC = 'PackedRawDataCnvSvc'"; 
+
+RdtWriter.ItemList = {
+                       "/Event/Digi/MdcDigiCol#1",
+                       "/Event/Digi/TofDigiCol#1",
+                       "/Event/Digi/EmcDigiCol#1",
+                       "/Event/Digi/MucDigiCol#1",
+		       "/Event/Hlt/HltRawCol#1"
+		      };
+

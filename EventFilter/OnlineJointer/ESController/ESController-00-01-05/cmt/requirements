@@ -1,0 +1,12 @@
+package ESController
+
+use BesPolicy	      BesPolicy-*
+use GaudiInterface    GaudiInterface-*   External
+
+use HltTools          HltTools-*         EventFilter/HltUtilities
+use EFServices        EFServices-*       EventFilter/OnlineJointer
+use efhlt             efhlt-*            EventFilter/OnlineJointer
+include_dirs "$(ESCONTROLLERROOT)"
+
+library ESController *.cxx -s=components *.cxx
+apply_pattern component_library

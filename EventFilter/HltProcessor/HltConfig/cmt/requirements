@@ -1,0 +1,16 @@
+package HltConfig
+use HltSteerData v* HltProcessor
+
+macro libxercesc "/cvmfs/juno.ihep.ac.cn/sl6_amd64_gcc447/Release/J16v1r1/ExternalLibs/Xercesc/3.1.1"
+macro HltConfig_cflags " -I$(libxercesc)/include "
+macro HltConfig_pp_cppflags " -I$(libxercesc)/include "
+macro HltConfig_use_linkopts " -L$(libxercesc)/lib -lxerces-c"
+
+
+include_dirs "/junofs/users/liuyan/OEC/EventFilter/HltProcessor/HltConfig/include"
+apply_pattern install_more_includes more=HltConfig
+
+library HltConfig *.cc
+apply_pattern linker_library library=HltConfig
+apply_pattern install_python_modules
+

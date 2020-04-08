@@ -1,0 +1,12 @@
+package HltAlgorithms
+
+use SniperKernel v*
+use HltDataTypes v* HltUtilities
+use HltStore v* HltUtilities
+
+include_dirs "/junofs/users/liuyan/OEC/EventFilter/HltUtilities/HltAlgorithms/include"
+library  HltAlgorithms  *.cc
+
+apply_pattern install_python_modules
+apply_pattern install_more_includes more=HltAlgorithms
+apply_pattern linker_library library=HltAlgorithms

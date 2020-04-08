@@ -1,0 +1,36 @@
+#include "SniperKernel/SvcFactory.h" 
+#include "SniperKernel/SvcBase.h"
+#include "TestSvc.h"
+DECLARE_SERVICE(TestSvc);     //算法声明宏语句//DECLARE_SERVICE
+
+TestSvc::TestSvc(const std::string& name)
+    : SvcBase(name)     //SvcBase(name)
+{
+    m_count = 0;
+    declProp("VarString", m_string);
+    declProp("VectorInt", m_vector_int); //声明属性，可以在python中进行配置
+    declProp("MapStrInt", m_str_int);
+}
+TestSvc::~TestSvc()
+{
+}
+bool
+TestSvc::initialize()
+{   
+    LogInfo << " initialized TestSvc successfully" << std::endl;
+    return true;
+}
+bool
+TestSvc::execute()
+{
+    ++m_count;
+    if(m_count>5) return false;   
+    LogInfo << "TestSvc: count: " << m_count << std::endl;
+    return true;
+}
+bool
+TestSvc::finalize()
+{
+    LogInfo << " finalized TestSvc  successfully" << std::endl;
+    return true;
+}

@@ -1,0 +1,52 @@
+//##############################################################
+// Job options file
+//==============================================================
+// Algorithm global output level(Sub-detectors' info from EventFilter)
+// DetectorHits GlobalEnergy ProcessCluster SectorHits ChargedTrack FlightTime toTDS
+EFAlgorithm.OutputLevel =555555;    
+
+//--------------------------------------------------------------
+// EventFilter Main Procedure Configurations, should not change
+//--------------------------------------------------------------
+ApplicationMgr.DLLs +={"HltStore" };
+ApplicationMgr.ExtSvc += { "HltStoreSvc" };
+ApplicationMgr.DLLs +={"HltConfig" };
+ApplicationMgr.ExtSvc += { "HltConfigSvc" };
+ApplicationMgr.DLLs += { "HltSteering" };
+ApplicationMgr.TopAlg += { "StepHandler/StepHandler" };
+StepHandler.EventTypes = {"Hadron","GHadron","EBhabha","GEBhabha",
+			  "BBhabha","GBBhabha","Beamgas", "GBeamgas",
+			   "Diphoton","GDiphoton","Dimuon","GDimuon",
+			   "Cosmic","GCosmic","Twophoton","GTwophoton",
+			   "Junk","GJunk","RandomTrg","Error","Other"};
+//............................
+HltConfigSvc.FromDB = true;
+HltConfigSvc.seqListFile = "$EVENTFILTERROOT/share/defaultseqlist.xml";
+HltConfigSvc.sigListFile = "$EVENTFILTERROOT/share/defaultsiglist.xml";
+
+//--------------------------------------------------------------
+// EventSelection Algorithms' Private Options
+//--------------------------------------------------------------
+// Offline Reconstruction (OnlineMode) Algorithms
+#include "$EVENTFILTERROOT/share/job_MdcFastTrk.txt"
+#include "$EVENTFILTERROOT/share/job_EmcRec.txt"
+
+// Options of other Local HltUtilities/HltAlgorithms
+ApplicationMgr.DLLs += {"HltAlgorithms"};
+
+// put result into TDS
+ApplicationMgr.TopAlg += { "EFtoTDS/EFtoTDS" };
+
+MdcGeomSvc.readAlignParDataBase=false;
+MdcGeomSvc.mcnoalignment=false;
+MdcGeomSvc.alignFilePath="/home/bes/wulh/mdcCalFile/alignment/6.5.5/MdcAlignPar_100317.txt";
+MdcGeomSvc.wireTensionFilePath="/home/bes/wulh/mdcCalFile/alignment/6.5.5/MdcWireTension.txt";
+MdcGeomSvc.wirePosFilePath="/home/bes/wulh/mdcCalFile/alignment/6.5.5/MdcWirePosCalib.txt";
+CalibRootCnvSvc.Mdcrootfile="/afs/ihep.ac.cn/bes3/offline/CalibConst/mdc/6.5.5/MdcCalibConst_11397_psi3770_652b_v1.root";
+CalibRootCnvSvc.Tofrootfile="/afs/ihep.ac.cn/bes3/offline/CalibConst/tof/6.5.5/TofCalConst13217-13228.root";
+CalibRootCnvSvc.TofQElecrootfile="/afs/ihep.ac.cn/bes3/offline/CalibConst/tofQELec/6.5.2/11299_80000/TofQElecConst.root";
+CalibRootCnvSvc.emcrootfile =
+"$EVENTFILTERROOT/share/EmcCalibConstIxtal9993-10137-lab.root";
+//==============================================================
+// End of job options file
+//##############################################################
