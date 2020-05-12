@@ -1,8 +1,14 @@
 # EventFilter
 
 ## 1.setup env  
-  
-source setup.sh  
+    *change the Path to your Path: export EventFilter=/YourPath/EventFilter  
+    *source setup.sh  
+    *For first clone, your need cmt only 1 time  
+            cd EventFilter/cmt  
+            cmt br cmt config  
+            cmt make  
+            source setup.sh  
+
   
 ## 2.run python  
   
