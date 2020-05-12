@@ -1,0 +1,8 @@
+package EventFilter
+
+use HltConfig v* HltProcessor
+use HltSteerData v* HltProcessor
+use HltSteering v* HltProcessor
+use HltStore v* HltUtilities
+use HltAlgorithms v* HltUtilities
+use HltResult v* HltProcessor

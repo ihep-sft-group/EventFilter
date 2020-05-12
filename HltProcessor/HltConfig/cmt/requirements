@@ -1,0 +1,16 @@
+package HltConfig
+use HltSteerData v* HltProcessor
+
+macro libxercesc "${JUNOTOP}/ExternalLibs/Xercesc/3.2.2"
+macro HltConfig_cflags " -I$(libxercesc)/include "
+macro HltConfig_pp_cppflags " -I$(libxercesc)/include "
+macro HltConfig_use_linkopts " -L$(libxercesc)/lib -lxerces-c"
+
+
+include_dirs "${EventFilter}/HltProcessor/HltConfig/include"
+apply_pattern install_more_includes more=HltConfig
+
+library HltConfig *.cc
+apply_pattern linker_library library=HltConfig
+apply_pattern install_python_modules
+

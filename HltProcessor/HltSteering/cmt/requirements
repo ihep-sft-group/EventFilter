@@ -1,0 +1,19 @@
+package HltSteering
+
+use SniperKernel v*
+use HltSteerData v* HltProcessor
+use HltDataTypes v* HltUtilities
+use HltConfig v* HltProcessor
+use HltResult v* HltProcessor
+
+macro libxercesc "${JUNOTOP}/ExternalLibs/Xercesc/3.2.2"
+macro HltSteering_cflags " -I$(libxercesc)/include "
+macro HltSteering_pp_cppflags " -I$(libxercesc)/include "
+macro HltSteering_use_linkopts " -L$(libxercesc)/lib -lxerces-c"
+
+include_dirs "${EventFilter}/HltProcessor/HltSteering/include"
+library  HltSteering  *.cc
+
+apply_pattern install_python_modules
+apply_pattern install_more_includes more=HltSteering
+apply_pattern linker_library library=HltSteering

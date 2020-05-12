@@ -1,0 +1,11 @@
+package HltSteerData
+
+use SniperKernel v*
+use HltStore v* HltUtilities
+use HltDataTypes v* HltUtilities
+include_dirs "${EventFilter}/HltProcessor/HltSteerData/include"
+library  HltSteerData  *.cc
+
+apply_pattern install_python_modules
+apply_pattern install_more_includes more=HltSteerData
+apply_pattern linker_library library=HltSteerData

@@ -1,0 +1,1 @@
+Signature_cxx_dependencies =  ../src/Signature.cxx  $(bin)HltSteerData_deps/Signature_cxx.stamp

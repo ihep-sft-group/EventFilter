@@ -1,0 +1,10 @@
+package HltResult
+
+use SniperKernel v*
+
+include_dirs "${EventFilter}/HltProcessor/HltResult/include"
+library  HltResult  *.cc
+
+apply_pattern install_python_modules
+apply_pattern install_more_includes more=HltResult
+apply_pattern linker_library library=HltResult
